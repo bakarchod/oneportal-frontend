@@ -7,6 +7,7 @@ import axios from 'axios';
 const FacultyDashboard = (data) => {
 
     const[formdata,setFormdata]=useState({
+        id:"",
         name:"",
         phone:"",
         personal_email_id: "",
@@ -17,34 +18,93 @@ const FacultyDashboard = (data) => {
         countrycode:"+91",
         last_qualification: "",
         department: "",
-        program: ""
+        program: "",
+
+        enrollment_number: null,
+        name: null,
+        batch_start: null,
+        batch_end: null,
+        university_email_id: null,
+        created_on: "2021-09-18T11:22:25.837240Z",
     });
 
     const changeHandler=val=>{
-        const newdata={formdata}
+        const newdata={...formdata}
         newdata[val.target.id]=val.target.value
-        setFormdata(newdata)
+        setFormdata(val)
         console.log(newdata)
-
-    }
-
-    const submit=(val)=>{
         console.log(formdata)
-        axios.post("http://oneportal.pythonanywhere.com/admissions/add_student",
-        {
-            name:formdata.name,
-            phone:formdata.countrycode+formdata.phone,
-            personal_email_id:formdata.personal_email_id,
-            last_qualification:formdata.last_qualification,
-            state:formdata.state,
-            department:formdata.department,
-            program:formdata.program,
-            pincode:formdata.pincode,
-            district:formdata.district,
-            street_address:formdata.street_address
 
-        })
     }
+	const submit = (event) => {
+		const formData = new FormData(event.currentTarget);
+		event.preventDefault();
+		var obj = {}
+		for (let [key, value] of formData.entries()) {
+			obj[key] = value;
+		  
+		}
+		console.log(obj);
+		Axios.post("http://oneportal.pythonanywhere.com/admissions/add_single_student",
+        JSON.stringify(obj)).then(response=>{
+            console.log(response)
+        }).catch(error=>{
+                console.log(error)
+        })
+	  };
+
+
+	// const LoginPage = () => {
+		
+	  
+	// 	return (
+	// 	  <div>
+	// 		<form onSubmit={handleSubmit}>
+	// 		  <input type="text" name="username" placeholder="Email" />
+	// 		  <input type="password" name="password" placeholder="Password" />
+	// 		  <button type="submit">Login</button>
+	// 		</form>
+	// 	  </div>
+	// 	);
+	//   };
+
+
+
+
+
+    // const submit=(val)=>{
+    //     console.log("name:"+formdata.name)
+    //     console.log({
+    //         name:formdata.name,
+    //         phone:"+"+formdata.countrycode+formdata.phone,
+    //         personal_email_id:formdata.personal_email_id,
+    //         last_qualification:formdata.last_qualification,
+    //         state:formdata.state,
+    //         department:formdata.department,
+    //         program:formdata.program,
+    //         pincode:formdata.pincode,
+    //         district:formdata.district,
+    //         street_address:formdata.street_address
+    //     })
+	// 	val.preventDefault();
+    //     Axios.post("http://oneportal.pythonanywhere.com/admissions/add_single_student",
+    //     JSON.stringify({   id: "",
+    //         name:formdata.name,
+    //         phone:"+"+formdata.countrycode+formdata.phone,
+    //         personal_email_id:formdata.personal_email_id,
+    //         last_qualification:formdata.last_qualification,
+    //         state:formdata.state,
+    //         department:formdata.department,
+    //         program:formdata.program,
+    //         pincode:formdata.pincode,
+    //         district:formdata.district,
+    //         street_address:formdata.street_address
+    //     })).then(response=>{
+    //         console.log(response)
+    //     }).catch(error=>{
+    //             console.log(error)
+    //     })
+    // }
 
     
 
@@ -105,17 +165,17 @@ const FacultyDashboard = (data) => {
                     </button>
                   </div>
                   <div class="modal-body">
-                  <form autocomplete="off" type="submit" onSubmit={(val)=>submit(val)}>
+                  <form onSubmit={submit}>
                       {/* <label>First Name</label> */}
-                        <input className="w-100" onChange={(val)=>changeHandler(val)} id="name" value={formdata.name} name='name' placeholder="Full Name"/>
+                        <input className="w-100"  id="name"  name='name' placeholder="Full Name"/>
                         {/* <label>Last name</label> */}
                         {/* <input className="w-100 mt-3" onChange={()=>changeHandler(val)} id="name" value={data.name} name='name' placeholder="Last Name"/> */}
-                        <select className="w-100 mt-3"  onChange={(val)=>changeHandler(val)} id="countrycode" value={formdata.countrycode} name="countryCode" id="">
-                        <option value="none" selected disabled hidden>
-          Select an Option
-      </option>
-      <option data-countryCode="IN" value="91">India (+91)</option>
-      <optgroup label="other countries">
+                        <select className="w-100 mt-3"   id="countrycode"  name="countryCode" id="">
+                            <option value="none" selected disabled hidden>
+                                Select an Option
+                            </option>
+                            <option data-countryCode="IN" value="91">India (+91)</option>
+                            <optgroup label="other countries">
 		<option data-countryCode="DZ" value="213">Algeria (+213)</option>
 		<option data-countryCode="AD" value="376">Andorra (+376)</option>
 		<option data-countryCode="AO" value="244">Angola (+244)</option>
@@ -331,10 +391,10 @@ const FacultyDashboard = (data) => {
 		<option data-countryCode="ZM" value="260">Zambia (+260)</option>
 		<option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
 	</optgroup>
-</select>
-                        <input className="w-100 mt-3" onChange={(val)=>changeHandler(val)} id="phone" value={formdata.phone} type="tel" maxLength="10" name='name' placeholder="Phone No."/>
-                        <input className="w-100 mt-3" onChange={(val)=>changeHandler(val)} id="personal_email_id" value={formdata.personal_email_id} type="email" name='name'placeholder="Personal Email"/>
-                        <select className="w-100 mt-3" onChange={(val)=>changeHandler(val)} id="program" value={formdata.program} name='text'placeholder="Program">
+                        </select>
+                        <input className="w-100 mt-3"  id="phone" type="tel" maxLength="10" name='phone' placeholder="Phone No."/>
+                        <input className="w-100 mt-3"  id="personal_email_id"  type="email" name='personal_email_id'placeholder="Personal Email"/>
+                        <select className="w-100 mt-3"  id="program"  name='program'placeholder="Program">
                             <option value="none" selected disabled hidden>Select an Option</option>
                             <option value="B.Tech">B.Tech</option>
                             <option value="M.Tech">M.Tech</option>
@@ -344,7 +404,7 @@ const FacultyDashboard = (data) => {
                             <option value="MBA">MBA</option>
                             <option value="Phd">Phd</option>
                         </select>
-                        <select className="w-100 mt-3"  onChange={(val)=>changeHandler(val)} id="department" value={formdata.department} name='text' placeholder="Department">
+                        <select className="w-100 mt-3"   id="department"  name='department' placeholder="Department">
                             <option value="none" selected disabled hidden>Select an Option</option>
                             <option value="CSE">CSE</option>
                             <option value="EE">EE</option>
@@ -353,18 +413,20 @@ const FacultyDashboard = (data) => {
                             <option value="IoT">IoT</option>
                             <option value="CTIS">CTIS</option>
                         </select>
-                        <input className="w-100 mt-3"  onChange={(val)=>changeHandler(val)} id="last_qualification" value={formdata.last_qualification} name='text'placeholder="Last Qualification"/>
-                        <input className="w-100 mt-3"  onChange={(val)=>changeHandler(val)} id="street_address" value={formdata.street_address} name='text'placeholder="Street Address"/>
-                        <input className="w-100 mt-3"  onChange={(val)=>changeHandler(val)} id="district" value={formdata.district} name='text'placeholder="District"/>
-                        <input className="w-100 mt-3"  onChange={(val)=>changeHandler(val)} id="state" value={formdata.state} name='text'placeholder="State"/>
-                        <input className="w-100 mt-3"  onChange={(val)=>changeHandler(val)} id="pincode" value={formdata.pincode} name='tex' placeholder="Pin"/>
+                        <input className="w-100 mt-3"   id="last_qualification"  name='last_qualification'placeholder="Last Qualification"/>
+                        <input className="w-100 mt-3"   id="street_address"  name='street_address'placeholder="Street Address"/>
+                        <input className="w-100 mt-3"   id="district"  name='district'placeholder="District"/>
+                        <input className="w-100 mt-3"   id="state"  name='state'placeholder="State"/>
+                        <input className="w-100 mt-3"   id="pincode"  name='pincode' placeholder="Pin"/>
                         <button>Submit</button>
-                    </form>
-      </div>
+                   
+      
                   <div class="modal-footer">
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" onClick={(val)=>submit(val)} className="btn btn-primary">Add</button>
+        <button type="submit" className="btn btn-primary">Add</button>
       </div>
+	  </form>
+	  </div>
                 </div>
               </div>
             </div>
