@@ -495,3 +495,15 @@ body {
 .theme-color {
     color: #34495e;
 }
+.blk{
+    color: #111;
+}
+input,select{
+    padding: 5px;
+    /* margin-top: 0px !important; */
+    box-shadow: none !important;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #3F99DB;
+}

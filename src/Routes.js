@@ -22,6 +22,7 @@ const Routes = (
             <Route exact path="/student/dashboard" component={StudentDashboard} />
             <Route path="/student/lecture" component={StudentLecture} />
             <Route path="/faculty/dashboard" component={ FacultyDashboard }/>
+            <Route path="/admission/dashboard" component={FacultyDashboard}/>
             <Route component={Error} />
         </Switch>
     </Router>
