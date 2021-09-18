@@ -29,10 +29,10 @@ const signIn = user => {
     console.log(data);  
     // console.log(formData.keys());  
     // return Axios.post('http://localhost:8000/api/gettoken/',data)
-    return fetch('http://localhost:8000/api/gettoken/',{
+    return fetch('http://localhost:8000/auth/gettoken/',{
         method:"POST",
         headers: {"Content-Type": "application/json"},
-        url : 'http://localhost:8000/api/gettoken/',
+        url : 'http://localhost:8000/auth/gettoken/',
         body: JSON.stringify(data),
     })
     .then((response) => {
@@ -46,22 +46,50 @@ const signIn = user => {
 
 export const authenticate = (data) => {
     if(typeof window !== undefined){
+        if(localStorage.getItem('Token')){
+            var grp=localStorage.getItem('group');
+            console.log(grp)
+            switch(grp){
+                case '"faculty"':
+                    window.location="/faculty/dashboard";
+                    break;
+                case '"student"':
+                    window.location="/student/dashboard";
+                    break;
+                case '"admission"':
+                    window.location="/admission/dashboard";
+                    break;
+                default:
+                    console.log("Ni Ladiyo");
+                    window.location="/";
+            }
+            
+
+        }else{
         console.log(data)
-        localStorage.setItem('Token', JSON.stringify(data));
+        localStorage.setItem('Token', JSON.stringify(data.token));
+        localStorage.setItem('group', JSON.stringify(data.group[0].name));
+        localStorage.setItem('Name', JSON.stringify(data.info.first_name+" "+data.info.last_name));
+        localStorage.setItem('email', JSON.stringify(data.info.email));
         console.log("hogyi set");
-        // switch(data){
-        //     case "faculty":
-        //         window.location="/faculty/dashboard";
-        //         break;
-        //     case "student":
-        //         window.location="/student/dashboard";
-        //         break;
-        //     case "admin":
-        //         window.location="/admin/dashboard";
-        //         break;
-        // }
-        window.location = "/faculty/dashboard";
+        console.log(data.group)
+        switch(data.group[0].name){
+            case "faculty":
+                window.location="/faculty/dashboard";
+                break;
+            case "student":
+                window.location="/student/dashboard";
+                break;
+            case "admission":
+                window.location="/admission/dashboard";
+                break;
+        }
+        // window.location = "/faculty/dashboard";
         // next();
+    }
+    }else
+    {
+        console.log("lund");
     }
 }
 
@@ -71,14 +99,15 @@ export const isAuthenticated = () => {
     // }
    var Token = localStorage.getItem('Token')
    console.log(Token, typeof Token)
-    if(Token == "undefined") {
+    if(Token === "undefined") {
         // console.log("mc")
         localStorage.removeItem('Token')
         return isAuthenticated()
     }
-    if(localStorage.getItem('Token') != "undefined"){
+    if(localStorage.getItem('Token') !== "undefined"){
         console.log(localStorage.getItem('Token'));
         return JSON.parse(localStorage.getItem('Token'));
+
     }
     else{
         localStorage.removeItem('Token');

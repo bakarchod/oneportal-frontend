@@ -1,16 +1,21 @@
 import React ,{useState} from "react";
 import './login.css'
-import signIn, { authenticate } from '../../../auth/loginAPI';
+import signIn, { authenticate, isAuthenticated } from '../../../auth/loginAPI';
 import { Redirect } from "react-router";
 
 
 
 const Login = () => {
+    
     const [values, setValues] = useState({
         email : "",
         password: ""
     });
     const {email,password} = values;
+    if(localStorage.getItem('Token')){
+        return authenticate({});
+
+    }else{
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -25,6 +30,7 @@ const Login = () => {
             //     // console.log("hi");
             //     return <Redirect to='/dashboard' />
             // }
+            successMessage();
         })
         .catch( e => console.log(e));
     }
@@ -82,6 +88,7 @@ const Login = () => {
         
     </section>
     );
+    }
 }
 
 export default Login;
