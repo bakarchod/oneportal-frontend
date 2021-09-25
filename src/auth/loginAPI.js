@@ -1,7 +1,7 @@
 // import {API} from '../API';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
-const API = "http://localhost:8000/api/"
+const API = "http://oneportal.pythonanywhere.com/api/"
 
 // const signUp = user => {
 //     return fetch(`${API}accounts/login`,{
@@ -29,10 +29,10 @@ const signIn = user => {
     console.log(data);  
     // console.log(formData.keys());  
     // return Axios.post('http://localhost:8000/api/gettoken/',data)
-    return fetch('http://localhost:8000/auth/gettoken/',{
+    return fetch('http://oneportal.pythonanywhere.com/auth/gettoken/',{
         method:"POST",
         headers: {"Content-Type": "application/json"},
-        url : 'http://localhost:8000/auth/gettoken/',
+        url : 'http://oneportal.pythonanywhere.com/auth/gettoken/',
         body: JSON.stringify(data),
     })
     .then((response) => {
@@ -50,13 +50,13 @@ export const authenticate = (data) => {
             var grp=localStorage.getItem('group');
             console.log(grp)
             switch(grp){
-                case '"faculty"':
+                case 'faculty':
                     window.location="/faculty/dashboard";
                     break;
-                case '"student"':
+                case 'student':
                     window.location="/student/dashboard";
                     break;
-                case '"admission"':
+                case 'admission':
                     window.location="/admission/dashboard";
                     break;
                 default:
@@ -67,11 +67,12 @@ export const authenticate = (data) => {
 
         }else{
         console.log(data)
-        localStorage.setItem('Token', JSON.stringify(data.token));
-        localStorage.setItem('group', JSON.stringify(data.group[0].name));
-        localStorage.setItem('Name', JSON.stringify(data.info.first_name+" "+data.info.last_name));
-        localStorage.setItem('email', JSON.stringify(data.info.email));
+        localStorage.setItem('Token', (data.token));
+        localStorage.setItem('group', (data.group[0].name));
+        localStorage.setItem('Name', (data.info.first_name+" "+data.info.last_name));
+        localStorage.setItem('email', (data.info.email));
         console.log("hogyi set");
+        console.log(localStorage.getItem('Name'))
         console.log(data.group)
         switch(data.group[0].name){
             case "faculty":
@@ -106,7 +107,7 @@ export const isAuthenticated = () => {
     }
     if(localStorage.getItem('Token') !== "undefined"){
         console.log(localStorage.getItem('Token'));
-        return JSON.parse(localStorage.getItem('Token'));
+        return (localStorage.getItem('Token'));
 
     }
     else{

@@ -26,10 +26,6 @@ const Login = () => {
         .then(data => {
             console.log(data);
             authenticate(data);
-            // if(data['token']){
-            //     // console.log("hi");
-            //     return <Redirect to='/dashboard' />
-            // }
             successMessage();
         })
         .catch( e => console.log(e));
