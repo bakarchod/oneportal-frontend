@@ -1,5 +1,5 @@
 import React from 'react'
-import './dashboard.css';
+import '../dashboard.css';
 import { Link } from 'react-router-dom';
 
 const StudentDashboard = () => {
@@ -96,7 +96,7 @@ const StudentDashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-3 col-sm-6 p-2">
+                        {/* <div className="col-xl-3 col-sm-6 p-2">
                             <div className="card card-common">
                                 <div className="card-body">
                                     <div className="d-flex justify-content-between">
@@ -112,7 +112,7 @@ const StudentDashboard = () => {
                                     <span>Updated Now</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

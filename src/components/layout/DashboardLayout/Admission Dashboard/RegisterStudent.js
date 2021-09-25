@@ -1,48 +1,22 @@
-import React, { useState } from 'react';
-import './dashboard.css';
+import React, { useState,useEffect } from 'react';
+import '../dashboard.css';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import axios from 'axios';
+import Student_card from './components/Student_card';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './Navbar';
 
-const FacultyDashboard = (data) => {
+const RegisterStudent = (data) => {
+	const [stu_data,setStu_data]=useState([]);
+	const [refresh,setRefresh]=useState(true);
 
-    const[formdata,setFormdata]=useState({
-        id:"",
-        name:"",
-        phone:"",
-        personal_email_id: "",
-        street_address: "",
-        district: "",
-        state: "",
-        pincode: "",
-        countrycode:"+91",
-        last_qualification: "",
-        department: "",
-        program: "",
-
-        enrollment_number: null,
-        name: null,
-        batch_start: null,
-        batch_end: null,
-        university_email_id: null,
-        created_on: "2021-09-18T11:22:25.837240Z",
-    });
-
-    const changeHandler=val=>{
-        const newdata={...formdata}
-        newdata[val.target.id]=val.target.value
-        setFormdata(val)
-        console.log(newdata)
-        console.log(formdata)
-
-    }
 	const submit = (event) => {
 		const formData = new FormData(event.currentTarget);
 		event.preventDefault();
 		var obj = {}
 		for (let [key, value] of formData.entries()) {
 			obj[key] = value;
-		  
 		}
 		console.log(obj);
 		Axios.post("http://oneportal.pythonanywhere.com/admissions/add_single_student",
@@ -54,107 +28,69 @@ const FacultyDashboard = (data) => {
 	  };
 
 
-	// const LoginPage = () => {
-		
-	  
-	// 	return (
-	// 	  <div>
-	// 		<form onSubmit={handleSubmit}>
-	// 		  <input type="text" name="username" placeholder="Email" />
-	// 		  <input type="password" name="password" placeholder="Password" />
-	// 		  <button type="submit">Login</button>
-	// 		</form>
-	// 	  </div>
-	// 	);
-	//   };
+	  useEffect(()=>{
+		  (async()=>{
+			  let StuData;
+			  try{
+				  get_student();
+			  } catch(error){
+				  console.log("useEffect Error")
+				  console.log(error)
+			  }
+		  })();
+	  },[refresh])
+	const get_student=()=>{
+		  
+		//   var token=
+		//   console.log("Entered")
+		//   console.log(token)
+		  Axios.get("http://oneportal.pythonanywhere.com/admissions/get_students",
+		  	{headers:{
+				  "Authorization" : "Token "+localStorage.getItem('Token')
+				}
+			}).then(response=>{
+				setStu_data(response.data)
+				console.log(stu_data)
+			}).catch(error=>{
+				console.log(error)
+			})
+	  }
 
+	  const re_fresh=()=>{
+		  setRefresh(!refresh)
+	  }
 
-
-
-
-    // const submit=(val)=>{
-    //     console.log("name:"+formdata.name)
-    //     console.log({
-    //         name:formdata.name,
-    //         phone:"+"+formdata.countrycode+formdata.phone,
-    //         personal_email_id:formdata.personal_email_id,
-    //         last_qualification:formdata.last_qualification,
-    //         state:formdata.state,
-    //         department:formdata.department,
-    //         program:formdata.program,
-    //         pincode:formdata.pincode,
-    //         district:formdata.district,
-    //         street_address:formdata.street_address
-    //     })
-	// 	val.preventDefault();
-    //     Axios.post("http://oneportal.pythonanywhere.com/admissions/add_single_student",
-    //     JSON.stringify({   id: "",
-    //         name:formdata.name,
-    //         phone:"+"+formdata.countrycode+formdata.phone,
-    //         personal_email_id:formdata.personal_email_id,
-    //         last_qualification:formdata.last_qualification,
-    //         state:formdata.state,
-    //         department:formdata.department,
-    //         program:formdata.program,
-    //         pincode:formdata.pincode,
-    //         district:formdata.district,
-    //         street_address:formdata.street_address
-    //     })).then(response=>{
-    //         console.log(response)
-    //     }).catch(error=>{
-    //             console.log(error)
-    //     })
-    // }
-
-    
 
     return (
-        <div>
-        <nav className="navbar navbar-expand-lg navbar-light">
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
-                            <div className="bottom-border p-3 mt-3">
-                                <div className="one-portal bottom-border">
-                                    <h4 className="text-white text-uppercase text-center mb-3">One Portal</h4>
-                                    <h5 className="text-white text-uppercase text-center mb-3">Faculty Dashboard</h5>
-                                </div>
-                                <div className="info my-3 text-center">
-                                   {/* <img src="images/logo.png" width="50" className="rounded-circle mr-3"  />  */}
-                                    <Link to="#" className="text-white text-uppercase text-center">{localStorage.getItem('Name')}</Link>
-                                    <p className="text-center text-white custom-small">FACULTY |  | CSE </p>
-                                </div>
-                            </div>
-                            <ul className="navbar-nav flex-column mt-4">
-                                <li className="nav-item"><Link to="#" className="nav-link text-white p-1 mb-2 current"><small><i className="fas fa-home text-light fa-sm mr-3"></i>Dashboard</small></Link></li>
-                                {/* <li className="nav-item"><Link to="attendance" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-user text-light fa-sm mr-3"></i>Attendence</small></Link></li>
-                                <li className="nav-item"><Link to="/outpass" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-envelope text-light fa-sm mr-3"></i>Outing</small></Link></li>
-                                <li className="nav-item"><Link to="/notice" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-shopping-cart text-light fa-sm mr-3"></i>Notice Board</small></Link></li>
-                                <li className="nav-item"><Link to="#" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-chart-line text-light fa-sm mr-3"></i>Semster Marks</small></Link></li>
-                                <li className="nav-item"><Link to="/calendar" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-chart-bar text-light fa-sm mr-3"></i> Calender</small></Link></li>
-                                <li className="nav-item"><Link to="student/lecture" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-table text-light fa-sm mr-3"></i>Lecture Corner</small></Link></li>
-
-                                <li className="nav-item"><Link to="/auth/logout" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-wrench text-light fa-sm mr-3"></i>Logout</small></Link></li> */}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <div>	
+			<Navbar></Navbar>
+			<ToastContainer position="bottom-right"/>
     <section>
         <div className="container-fluid">
-            <div className="col-xl-10 col-lg-9 col-md-8 ml-auto">
-                <div className="container">
-                
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+			<div className="row col-xl-10 col-lg-9 col-md-8 ml-auto">
+			<div className="col-6 col-xl-10 col-lg-9 col-md-8 ">
+				<div>
+					<div className="row">
+						<div className="col-6 col-xl-10 col-lg-9 col-md-8">
+						<h1>Pending Admission</h1></div>
+						<div className="col">
+						<button type="button" class="btn btn-block btn-outline-primary float-right" onClick={re_fresh}>
+							Refresh <i class="fas fa-redo"></i></button>
+						</div>
+					</div>
+					
+					{
+						stu_data.map((student,index)=>(
+							<Student_card studentData={student} key={index} refresh={refresh} setRefresh={setRefresh}/>
+						))
+					}
+					
+				</div>
+			</div>
+        	<div className="col">           
+            <button type="button" class="btn btn-primary mt-5 btn-block btn-lg" data-toggle="modal" data-target="#exampleModalCenter">
                 Add Student
             </button>
-
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -172,7 +108,7 @@ const FacultyDashboard = (data) => {
                         {/* <input className="w-100 mt-3" onChange={()=>changeHandler(val)} id="name" value={data.name} name='name' placeholder="Last Name"/> */}
                         <select className="w-100 mt-3"   id="countrycode"  name="countryCode" id="">
                             <option value="none" selected disabled hidden>
-                                Select an Option
+                                Select Country Code
                             </option>
                             <option data-countryCode="IN" value="91">India (+91)</option>
                             <optgroup label="other countries">
@@ -395,7 +331,7 @@ const FacultyDashboard = (data) => {
                         <input className="w-100 mt-3"  id="phone" type="tel" maxLength="10" name='phone' placeholder="Phone No."/>
                         <input className="w-100 mt-3"  id="personal_email_id"  type="email" name='personal_email_id'placeholder="Personal Email"/>
                         <select className="w-100 mt-3"  id="program"  name='program'placeholder="Program">
-                            <option value="none" selected disabled hidden>Select an Option</option>
+                            <option value="none" selected disabled hidden>Select Program</option>
                             <option value="B.Tech">B.Tech</option>
                             <option value="M.Tech">M.Tech</option>
                             <option value="BCA">BCA</option>
@@ -405,7 +341,7 @@ const FacultyDashboard = (data) => {
                             <option value="Phd">Phd</option>
                         </select>
                         <select className="w-100 mt-3"   id="department"  name='department' placeholder="Department">
-                            <option value="none" selected disabled hidden>Select an Option</option>
+                            <option value="none" selected disabled hidden>Select Department</option>
                             <option value="CSE">CSE</option>
                             <option value="EE">EE</option>
                             <option value="CE">CE</option>
@@ -418,7 +354,7 @@ const FacultyDashboard = (data) => {
                         <input className="w-100 mt-3"   id="district"  name='district'placeholder="District"/>
                         <input className="w-100 mt-3"   id="state"  name='state'placeholder="State"/>
                         <input className="w-100 mt-3"   id="pincode"  name='pincode' placeholder="Pin"/>
-                        <button>Submit</button>
+                        {/* <button>Submit</button> */}
                    
       
                   <div class="modal-footer">
@@ -441,5 +377,4 @@ const FacultyDashboard = (data) => {
     </div>
     );
 }
-
-export default FacultyDashboard;
+export default RegisterStudent;
