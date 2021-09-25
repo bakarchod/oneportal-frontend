@@ -75,15 +75,18 @@ export const authenticate = (data) => {
         console.log(localStorage.getItem('Name'))
         console.log(data.group)
         switch(data.group[0].name){
-            case "faculty":
+            case 'faculty':
                 window.location="/faculty/dashboard";
                 break;
-            case "student":
+            case 'student':
                 window.location="/student/dashboard";
                 break;
-            case "admission":
+            case 'admission':
                 window.location="/admission/dashboard";
                 break;
+            default:
+                console.log("Ni Ladiyo");
+                window.location="/";
         }
         // window.location = "/faculty/dashboard";
         // next();
