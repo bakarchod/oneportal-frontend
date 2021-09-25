@@ -383,11 +383,12 @@ body {
   /* navbar */
   .sidebar {
     height: 100vh;
-    background: linear-gradient(180deg, #446DEC, #3F99DB);
+    /* background: linear-gradient(180deg, #446DEC, #3F99DB); */
+    background-color: rgb(65, 32, 32);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    box-shadow: 5px 7px 25px #999;
+    /* box-shadow: 5px 7px 25px #999; */
   }
   
   .bottom-border {
@@ -468,17 +469,23 @@ body {
     }
   }
   /* end of navbar */
+
+  .card{
+      background-color: #270c0a;
+      color:White;
+  }
   
   /* cards */
   .card-common {
-    box-shadow: 1px 2px 5px #999;
+    /* box-shadow: 1px 2px 5px #999; */
+    background-color: none;
     transition: all .4s;
   }
   
-  .card-common:hover {
-    box-shadow: 2px 3px 15px #999;
-    transform: translateY(-1px);
-  }
+    /* .card-common:hover {
+        box-shadow: 2px 3px 15px #999;
+        transform: translateY(-1px);
+    } */
   /* end of cards */
   
   /* task list */

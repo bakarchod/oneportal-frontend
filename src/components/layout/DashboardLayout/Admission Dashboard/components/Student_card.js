@@ -34,23 +34,23 @@ const Student_card=({studentData,refresh,setRefresh})=>{
         toast("Confirmed",{type:'success',progress:'undefined'})
     }
 
-return (<div className="card mb-2" >
-	<div className="card-body">
-    {/* <ToastContainer position="bottom-center"/> */}
-		<div className="row">
-			<div className="col-xl-10">
-	  			<h5 className="card-title">Name: {studentData.name}</h5>
-	  			<h6>Mob: +91 7999697546</h6>
-				<h6>Opted for: B.Tech CSE</h6>
-				<h6>Year: {studentData.id}</h6>
-			</div>
-			<div className="col">
-	  			<a href="#" className="btn btn-outline-success h-30 btn-block mt-3 btn-lg" onClick={(event)=>conf_std(event)}>Confirm</a>
-	  			<a href="#" className="btn btn-outline-danger h-30 btn-block mt-3 btn-lg" onClick={(event)=>del_std(event)}>Delete</a>
+return (
+	<div className="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+		<div className=" m-2 jumbotron">
+			
+			<h5 className="text-center text-dark">Name: {studentData.name}</h5>
+			<h6 className="text-center text-dark">Mob: +91 7999697546</h6>
+			<h6 className="text-center text-dark">Opted for: B.Tech CSE</h6>
+			<h6 className="text-center text-dark">Year: {studentData.id}</h6>
+			<div className="text-center">
+				<button className="btn btn-outline-success " onClick={(event)=>conf_std(event)}>Confirm</button>
+				<button className="btn btn-outline-danger " onClick={(event)=>del_std(event)}>Delete</button>
 			</div>
 		</div>
+			
+		{/* </div> */}
 	</div>
-</div>
+// </div>
 )
 }
 
