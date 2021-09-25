@@ -59,6 +59,9 @@ export const authenticate = (data) => {
                 case 'admission':
                     window.location="/admission/dashboard";
                     break;
+                case 'sub_registrar':
+                    window.location="/sub_registrar/dashboard";
+                    break;
                 default:
                     console.log("Ni Ladiyo");
                     window.location="/";
