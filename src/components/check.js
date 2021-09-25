@@ -19,7 +19,6 @@ export default function Check() {
             // alert('Error Occured');
              return <Redirect to="/login" />
         }
-        
     } 
     return (
         f()
