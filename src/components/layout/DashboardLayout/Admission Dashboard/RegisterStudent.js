@@ -6,10 +6,12 @@ import Student_card from './components/Student_card';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './Navbar';
+import EditStudentInfo from '../SubRegistrarDashboard/editStudentInfo';
 
 const RegisterStudent = (data) => {
 	const [stu_data,setStu_data]=useState([]);
 	const [refresh,setRefresh]=useState(true);
+	
 
 	const submit = (event) => {
 		const formData = new FormData(event.currentTarget);
@@ -59,6 +61,9 @@ const RegisterStudent = (data) => {
 
 	  const re_fresh=()=>{
 		  setRefresh(!refresh)
+	  }
+	  const edit_stu=()=>{
+		  <EditStudentInfo />
 	  }
 
 
