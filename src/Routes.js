@@ -23,6 +23,8 @@ import CoeDepartments from "./components/layout/DashboardLayout/CoeDashboard/Coe
 import CoeSessions from "./components/layout/DashboardLayout/CoeDashboard/CoeSessions";
 import HodDashboard from "./components/layout/DashboardLayout/hodDashboard/HodDashboard"
 import HodSubjects from "./components/layout/DashboardLayout/hodDashboard/HodSubject";
+import EditStudentInfo from "./components/layout/DashboardLayout/SubRegistrarDashboard/editStudentInfo";
+
 
 
 
@@ -46,7 +48,8 @@ const Routes = (
             <Route exact path="/coe/departments/:id/subjects" component={CoeDepartments}/>
             <Route path="/coe/sessions" component={CoeSessions} />       
             <Route path="/hod/dashboard" component={HodDashboard} />   
-            <Route path="/hod/subjects" component={HodSubjects} />     
+            <Route path="/hod/subjects" component={HodSubjects} /> 
+            <Route path="/sub_registrar/editStudentInfo/:id" component={EditStudentInfo}/>
             <Route component={Error} />
         </Switch>
     </Router>
