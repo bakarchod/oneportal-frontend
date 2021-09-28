@@ -23,7 +23,9 @@ import CoeDepartments from "./components/layout/DashboardLayout/CoeDashboard/Coe
 import CoeSessions from "./components/layout/DashboardLayout/CoeDashboard/CoeSessions";
 import HodDashboard from "./components/layout/DashboardLayout/hodDashboard/HodDashboard"
 import HodSubjects from "./components/layout/DashboardLayout/hodDashboard/HodSubject";
+import HodStudents from "./components/layout/DashboardLayout/hodDashboard/HodStudents";
 import EditStudentInfo from "./components/layout/DashboardLayout/SubRegistrarDashboard/editStudentInfo";
+import AdmissionEditStudentInfo from "./components/layout/DashboardLayout/Admission Dashboard/editStudentInfo";
 
 
 
@@ -40,6 +42,7 @@ const Routes = (
             <Route path="/faculty/dashboard" component={ FacultyDashboard }/>
             <Route path="/admission/dashboard" component={AdmissionDashboard}/>
             <Route path="/admission/register" component={RegisterStudent}/>
+            <Route path="/admission/editStudentInfo/:id" component={AdmissionEditStudentInfo}/>
             <Route path="/sub_registrar/dashboard" component={SubRegistrarDashboard}/>
             <Route path="/sub_registrar/register" component={ConfirmAdmission}/>
             <Route path="/coe/dashboard" component={CoeDashboard}/>
@@ -49,6 +52,7 @@ const Routes = (
             <Route path="/coe/sessions" component={CoeSessions} />       
             <Route path="/hod/dashboard" component={HodDashboard} />   
             <Route path="/hod/subjects" component={HodSubjects} /> 
+            <Route path="/hod/students" component={HodStudents} /> 
             <Route path="/sub_registrar/editStudentInfo/:id" component={EditStudentInfo}/>
             <Route component={Error} />
         </Switch>

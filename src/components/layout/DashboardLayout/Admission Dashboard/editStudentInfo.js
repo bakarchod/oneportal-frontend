@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { toast,ToastContainer } from "react-toastify";
-import './style.css';
+// import './style.css';
 import Axios from "axios";
 
 
-const EditStudentInfo=(props)=>{
+const AdmissionEditStudentInfo=(props)=>{
     // console.log("props",props.match.params.id)
 
     const [stu_data,setStu_data]=useState([]);
@@ -17,7 +17,7 @@ const EditStudentInfo=(props)=>{
     const [refresh,setRefresh]=useState(true); 
 
     useEffect(async ()=>{
-        let result=await fetch("http://oneportal.pythonanywhere.com/sub_registrar/sub_get_single_student/"+props.match.params.id,
+        let result=await fetch("http://oneportal.pythonanywhere.com/admissions/get_single_student/"+props.match.params.id,
         {
             method:'GET',
             headers:{"Authorization" : "Token "+localStorage.getItem('Token')}
@@ -31,10 +31,6 @@ const EditStudentInfo=(props)=>{
 
 
     const get_department=()=>{
-		  
-		//   var token=
-		//   console.log("Entered")
-		//   console.log(token)
 		  Axios.get("http://oneportal.pythonanywhere.com/acads/coe_get_departments",
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
@@ -75,12 +71,12 @@ const EditStudentInfo=(props)=>{
 			obj[key] = value;
 		}
 		console.log(obj);
-        Axios.post("http://oneportal.pythonanywhere.com/sub_registrar/sub_edit_details/"+props.match.params.id,
+        Axios.post("http://oneportal.pythonanywhere.com/admissions/edit_details/"+props.match.params.id,
 			(obj),
 			{headers:{"Authorization" : "Token "+localStorage.getItem('Token')}}).then(response=>{
             console.log(response)
             toast("Saved",{type:"success"})
-            window.location = '/sub_registrar/register'
+            window.location = '/admission/register'
         }).catch(error=>{
                 console.log(error)
                 toast("Error",{type:"error"})
@@ -95,7 +91,7 @@ const EditStudentInfo=(props)=>{
     //     toast("Saved and exit",{type:"success",autoClose:3000})
     // }
     const exit=()=>{
-        window.location = '/sub_registrar/register'
+        window.location = '/admission/register'
         toast("Exit",{type:"error",autoClose:3000})
     }
 
@@ -204,4 +200,4 @@ const EditStudentInfo=(props)=>{
 );
 }
 
-export default EditStudentInfo; 
+export default AdmissionEditStudentInfo; 

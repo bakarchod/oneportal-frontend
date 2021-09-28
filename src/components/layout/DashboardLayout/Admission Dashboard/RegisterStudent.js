@@ -10,6 +10,8 @@ import Navbar from './Navbar';
 
 const RegisterStudent = (data) => {
 	const [stu_data,setStu_data]=useState([]);
+	const [department_data,setDepartment_data]=useState([]);
+	const [program_data,setProgram_data]=useState([]);
 	const [refresh,setRefresh]=useState(true);
 	
 
@@ -36,6 +38,8 @@ const RegisterStudent = (data) => {
 			  let StuData;
 			  try{
 				  get_student();
+				  get_department();
+				  get_programs();
 			  } catch(error){
 				  console.log("useEffect Error")
 				  console.log(error)
@@ -53,6 +57,40 @@ const RegisterStudent = (data) => {
 				}
 			}).then(response=>{
 				setStu_data(response.data)
+				console.log(stu_data)
+			}).catch(error=>{
+				console.log(error)
+			})
+	  }
+	  const get_department=()=>{
+		  
+		//   var token=
+		//   console.log("Entered")
+		//   console.log(token)
+		  Axios.get("http://oneportal.pythonanywhere.com/acads/coe_get_departments",
+		  	{headers:{
+				  "Authorization" : "Token "+localStorage.getItem('Token')
+				}
+			}).then(response=>{
+				console.log(response.data)
+				setDepartment_data(response.data)
+				console.log(stu_data)
+			}).catch(error=>{
+				console.log(error)
+			})
+	  }
+	  const get_programs=()=>{
+		  
+		//   var token=
+		//   console.log("Entered")
+		//   console.log(token)
+		  Axios.get("http://oneportal.pythonanywhere.com/acads/get_programs",
+		  	{headers:{
+				  "Authorization" : "Token "+localStorage.getItem('Token')
+				}
+			}).then(response=>{
+				console.log(response.data)
+				setProgram_data(response.data)
 				console.log(stu_data)
 			}).catch(error=>{
 				console.log(error)
@@ -330,22 +368,22 @@ const RegisterStudent = (data) => {
 												<input className="w-100 mt-3"  id="personal_email_id"  type="email" name='personal_email_id'placeholder="Personal Email"/>
 												<select className="w-100 mt-3"  id="program"  name='program'placeholder="Program">
 													<option value="none" selected disabled hidden>Select Program</option>
-													<option value="B.Tech">B.Tech</option>
-													<option value="M.Tech">M.Tech</option>
-													<option value="BCA">BCA</option>
-													<option value="MCA">MCA</option>
-													<option value="BBA">BBA</option>
-													<option value="MBA">MBA</option>
-													<option value="Phd">Phd</option>
+													
+													{
+														program_data.map((program,index)=>(
+															<option value={program.id} key={index}> {program.name}</option>
+														))
+													}
 												</select>
+												{/* {department_data} */}
 												<select className="w-100 mt-3"   id="department"  name='department' placeholder="Department">
 													<option value="none" selected disabled hidden>Select Department</option>
-													<option value="CSE">CSE</option>
-													<option value="EE">EE</option>
-													<option value="CE">CE</option>
-													<option value="ME">ME</option>
-													<option value="IoT">IoT</option>
-													<option value="CTIS">CTIS</option>
+													{
+														department_data.map((department,index)=>(
+															<option value={department.id} key={index}> {department.department_name} ({department.department_code})</option>
+														))
+													}
+		
 												</select>
 												<input className="w-100 mt-3"   id="last_qualification"  name='last_qualification'placeholder="Last Qualification"/>
 												<input className="w-100 mt-3"   id="street_address"  name='street_address'placeholder="Street Address"/>
