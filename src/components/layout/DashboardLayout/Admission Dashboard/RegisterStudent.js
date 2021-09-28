@@ -69,7 +69,7 @@ const RegisterStudent = (data) => {
 
     return (
         <div>	
-			<Navbar></Navbar>
+			<Navbar />
 			<ToastContainer position="bottom-right"/>
     <section>
 		
@@ -78,31 +78,31 @@ const RegisterStudent = (data) => {
 				<div className="row justify-content-center">
 					<div className="col-xl-12 col-lg-12 col-md-12 ml-auto">
 						<div className="card">
-							<div class="card card-common"> 
-								<h3 class="text-white text-center pt-2">Pending Admission</h3>
+							<div className="card card-common"> 
+								<h3 className="text-white text-center pt-2">Pending Admission</h3>
 								
 								<div className="row justify-content-center text-center p-3">
 									<div className="col-xl-2 col-lg-2 m-xl-2">
-										<button type="button" class="btn btn-outline-primary ml-auto" onClick={re_fresh}>
-										Refresh <i class="fas fa-redo"></i></button>
+										<button type="button" className="btn btn-outline-primary ml-auto" onClick={re_fresh}>
+										Refresh <i className="fas fa-redo"></i></button>
 									</div>
 									<div className="col-xl-2 col-lg-2 m-xl-2">
 									
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+								<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
 									Add Student
 								</button>
-								<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered" role="document">
-									<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalCenterTitle">Add Student</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								<div className="modal-dialog modal-dialog-centered" role="document">
+									<div className="modal-content">
+									<div className="modal-header">
+										<h5 className="modal-title" id="exampleModalCenterTitle">Add Student</h5>
+										<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 									
 										<form onSubmit={submit}>
-											<div class="modal-body">
+											<div className="modal-body">
 											{/* <label>First Name</label> */}
 												<input className="w-100"  id="name"  name='name' placeholder="Full Name"/>
 												{/* <label>Last name</label> */}
@@ -357,7 +357,7 @@ const RegisterStudent = (data) => {
 												<input className="w-100 mt-3"   id="pincode"  name='pincode' placeholder="Pin"/>
 										
 							
-												<div class="modal-footer">
+												<div className="modal-footer">
 													<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
 													<button type="submit" className="btn btn-primary">Add</button>
 												</div>
