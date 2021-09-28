@@ -62,6 +62,12 @@ export const authenticate = (data) => {
                 case 'sub_registrar':
                     window.location="/sub_registrar/dashboard";
                     break;
+                case 'coe':
+                    window.location="/coe/dashboard";
+                    break;
+                case 'hod':
+                    window.location="/hod/dashboard";
+                    break;
                 default:
                     console.log("Ni Ladiyo");
                     window.location="/";

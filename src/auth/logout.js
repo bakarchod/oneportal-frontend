@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 
 const Logout = () => {
-    localStorage.removeItem('Token');
+    localStorage.clear();
     alert("logout successfull")
     return <Redirect to="/" />
     

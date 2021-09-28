@@ -26,16 +26,16 @@ const Login = () => {
         .then(data => {
             console.log(data);
             authenticate(data);
-            successMessage();
+            // successMessage();
         })
         .catch( e => console.log(e));
     }
 
-    const successMessage = () => {
-        return (
-            alert('Login Successfull')
-        );
-    }
+    // const successMessage = () => {
+    //     return (
+    //         alert('Login Successfull')
+    //     );
+    // }
     const errorMessage = () => {
         return (
             alert('Error Occured')
