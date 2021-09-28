@@ -6,6 +6,7 @@ import Student_card from './components/Student_card';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './Navbar';
+import EditStudentInfo from '../SubRegistrarDashboard/editStudentInfo';
 
 const RegisterStudent = (data) => {
 	const [stu_data,setStu_data]=useState([]);
@@ -60,6 +61,9 @@ const RegisterStudent = (data) => {
 	  const re_fresh=()=>{
 		  setRefresh(!refresh)
 	  }
+	  const edit_stu=()=>{
+		  <EditStudentInfo />
+	  }
 
 
     return (
@@ -86,18 +90,18 @@ const RegisterStudent = (data) => {
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
 									Add Student
 								</button>
-								<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered" role="document">
-									<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalCenterTitle">Add Student</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								<div className="modal-dialog modal-dialog-centered" role="document">
+									<div className="modal-content">
+									<div className="modal-header">
+										<h5 className="modal-title" id="exampleModalCenterTitle">Add Student</h5>
+										<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 									
 										<form onSubmit={submit}>
-											<div class="modal-body">
+											<div className="modal-body">
 											{/* <label>First Name</label> */}
 												<input className="w-100"  id="name"  name='name' placeholder="Full Name"/>
 												{/* <label>Last name</label> */}
@@ -352,7 +356,7 @@ const RegisterStudent = (data) => {
 												<input className="w-100 mt-3"   id="pincode"  name='pincode' placeholder="Pin"/>
 										
 							
-												<div class="modal-footer">
+												<div className="modal-footer">
 													<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
 													<button type="submit" className="btn btn-primary">Add</button>
 												</div>

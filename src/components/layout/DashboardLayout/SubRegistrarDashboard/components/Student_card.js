@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
-// import {refresh,setRefresh} from '../FacultyDashboard';
+import {Link} from 'react-router-dom';
+import EditStudentInfo from '../editStudentInfo';
+
+const studata=React.createContext();
 
 const Student_card=({studentData,refresh,setRefresh})=>{
 
@@ -49,10 +52,23 @@ const Student_card=({studentData,refresh,setRefresh})=>{
 	  })
 		
     }
+
+	const edit_stu=(stdata)=>{
+		// studata.Provider.value="Lund";
+		// console.log(stdata)
+		// // console.log(studata)
+		// localStorage.setItem('stu_id',studentData.id)
+		// window.location='/sub_registrar/editStudentInfo'
+		// console.log(studentData)
+		// toast("yes",{type:"success"})	
+		
+	}
+
         
     
 
 return (
+	<studata.Provider value={studentData.id}>
 	<div className="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 		<div className=" m-2 jumbotron font-weight-bold">
 			
@@ -61,15 +77,19 @@ return (
 			<h6 className="text-center text-dark font-weight-bold">Opted for: B.Tech CSE</h6>
 			<h6 className="text-center text-dark font-weight-bold">Year: {studentData.id}</h6>
 			<div className="text-center">
+				<Link to={"/sub_registrar/editStudentInfo/"+studentData.id}>
+				<button className="btn btn-outline-info">Edit</button>
+				</Link>
 				<button className="btn btn-outline-success " onClick={(event)=>conf_std(event)}>Confirm</button>
 				<button className="btn btn-outline-danger " onClick={(event)=>del_std(event)}>Delete</button>
+				
 			</div>
 		</div>
-			
-		{/* </div> */}
 	</div>
+	</studata.Provider>
 // </div>
 )
 }
 
 export default Student_card;
+export {studata};

@@ -17,6 +17,7 @@ import Check from "./components/check";
 import StudentLecture from './components/layout/LectureLayout/studentLecture';
 import SubRegistrarDashboard from "./components/layout/DashboardLayout/SubRegistrarDashboard/SubRegistrarDashboard";
 import ConfirmAdmission from "./components/layout/DashboardLayout/SubRegistrarDashboard/ConfirmAdmission";
+import EditStudentInfo from "./components/layout/DashboardLayout/SubRegistrarDashboard/editStudentInfo";
 
 
 
@@ -34,6 +35,7 @@ const Routes = (
             <Route path="/admission/register" component={RegisterStudent}/>
             <Route path="/sub_registrar/dashboard" component={SubRegistrarDashboard}/>
             <Route path="/sub_registrar/register" component={ConfirmAdmission}/>
+            <Route path="/sub_registrar/editStudentInfo/:id" component={EditStudentInfo}/>
             
             <Route component={Error} />
         </Switch>

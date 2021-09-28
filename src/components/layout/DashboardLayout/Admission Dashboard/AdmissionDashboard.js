@@ -9,8 +9,6 @@ import Navbar from './Navbar';
 
 const FacultyDashboard = (data) => {
 	
-
-
     return (
         <div>	
 			<Navbar></Navbar>

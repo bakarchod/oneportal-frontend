@@ -13,9 +13,8 @@ const Student_card=({studentData,refresh,setRefresh})=>{
 		
         Axios.get("http://oneportal.pythonanywhere.com/admissions/delete/"+studentData.id,
 		{
-			headers:{"Authorization" : "Token "+localStorage.getItem('Token')
-		  }
-	  }).then(response=>{
+			headers:{"Authorization" : "Token "+localStorage.getItem('Token')}
+	  	}).then(response=>{
 		  console.log(response.msg)
 		  setRefresh(!refresh)
 		  toast("Deleted",{type:'error'})
@@ -31,7 +30,22 @@ const Student_card=({studentData,refresh,setRefresh})=>{
 
     const conf_std=(event)=>{
         event.preventDefault();
-        toast("Confirmed",{type:'success',progress:'undefined'})
+		Axios.get("http://oneportal.pythonanywhere.com/admissions/confirm_admission/"+studentData.id,
+		{
+			headers:{"Authorization" : "Token "+localStorage.getItem('Token')
+		  }
+	  }).then(response=>{
+		  console.log(response.msg)
+		  setRefresh(!refresh)
+		  toast("Confirmed",{type:'success'})
+		//   get_student()
+		//   toast("Deleted",{type:'error'})
+		 
+	  }).catch(error=>{
+		  console.log(error)
+		  toast("Some Error occured!",{type:'error'})
+	  })
+        
     }
 
 return (
