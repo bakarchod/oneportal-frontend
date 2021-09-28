@@ -43,6 +43,9 @@ return (
 			<h6 className="text-center text-dark">Opted for: B.Tech CSE</h6>
 			<h6 className="text-center text-dark">Year: {studentData.id}</h6>
 			<div className="text-center">
+				<Link to={"/sub_registrar/editStudentInfo/"+studentData.id}>
+				<button className="btn btn-outline-info">Edit</button>
+				</Link>
 				<button className="btn btn-outline-success " onClick={(event)=>conf_std(event)}>Confirm</button>
 				<button className="btn btn-outline-danger " onClick={(event)=>del_std(event)}>Delete</button>
 			</div>
