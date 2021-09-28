@@ -1,0 +1,14 @@
+th{
+    background-color: transparent;
+    margin-bottom: 20px;
+}
+.tablerow{
+    margin-bottom: 20px !important;
+}
+.hululu{
+    color: white;
+    margin-bottom: 20px;
+}
+input{
+    border-bottom: 2px solid black !important;
+}
