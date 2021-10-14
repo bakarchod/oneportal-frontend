@@ -10,7 +10,7 @@ import Login from "./components/layout/LoginLayout/login";
 import Logout from "./auth/logout";
 import Error from "./components/layout/Error";
 import StudentDashboard from "./components/layout/DashboardLayout/Student Dashboard/studentDashboard";
-import FacultyDashboard from "./components/layout/DashboardLayout/Faculty Dashboard/FacultyDashboard";
+import FacultyDashboard from "./components/layout/DashboardLayout/FacultyDashboard/FacultyDashboard";
 import AdmissionDashboard from "./components/layout/DashboardLayout/Admission Dashboard/AdmissionDashboard";
 import RegisterStudent from "./components/layout/DashboardLayout/Admission Dashboard/RegisterStudent";
 import Check from "./components/check";
@@ -26,8 +26,10 @@ import HodSubjects from "./components/layout/DashboardLayout/hodDashboard/HodSub
 import HodStudents from "./components/layout/DashboardLayout/hodDashboard/HodStudents";
 import EditStudentInfo from "./components/layout/DashboardLayout/SubRegistrarDashboard/editStudentInfo";
 import AdmissionEditStudentInfo from "./components/layout/DashboardLayout/Admission Dashboard/editStudentInfo";
-
-
+import HodIndividualSubject from "./components/layout/DashboardLayout/hodDashboard/HodIndividualSubject";
+import HodSubjectTrack from "./components/layout/DashboardLayout/hodDashboard/HodSubjectTrack"
+import HodCurriculum from './components/layout/DashboardLayout/hodDashboard/HodCurriculum'
+import FacultyLectureCorner from "./components/layout/DashboardLayout/FacultyDashboard/FacultyLectureCorner"
 
 
 
@@ -38,22 +40,29 @@ const Routes = (
             <Route exact path="/login" component={Login} />
             <Route exact path="/auth/logout" component = {Logout} />
             <Route exact path="/student/dashboard" component={StudentDashboard} />
-            <Route path="/student/lecture" component={StudentLecture} />
-            <Route path="/faculty/dashboard" component={ FacultyDashboard }/>
-            <Route path="/admission/dashboard" component={AdmissionDashboard}/>
-            <Route path="/admission/register" component={RegisterStudent}/>
-            <Route path="/admission/editStudentInfo/:id" component={AdmissionEditStudentInfo}/>
-            <Route path="/sub_registrar/dashboard" component={SubRegistrarDashboard}/>
-            <Route path="/sub_registrar/register" component={ConfirmAdmission}/>
-            <Route path="/coe/dashboard" component={CoeDashboard}/>
-            <Route path="/coe/academics" component={CoeAcademics}/>
+            <Route exact path="/student/lecture" component={StudentLecture} />
+            <Route exact path="/faculty/dashboard" component={ FacultyDashboard }/>
+            <Route exact path="/admission/dashboard" component={AdmissionDashboard}/>
+            <Route exact path="/admission/register" component={RegisterStudent}/>
+            <Route exact path="/admission/editStudentInfo/:id" component={AdmissionEditStudentInfo}/>
+            <Route exact path="/sub_registrar/dashboard" component={SubRegistrarDashboard}/>
+            <Route exact path="/sub_registrar/register" component={ConfirmAdmission}/>
+            <Route exact path="/sub_registrar/editStudentInfo/:id" component={EditStudentInfo}/>
+            <Route exact path="/coe/dashboard" component={CoeDashboard}/>
+            <Route exact path="/coe/academics" component={CoeAcademics}/>
             <Route exact path="/coe/departments/:id" component={CoeDepartments}/>
             <Route exact path="/coe/departments/:id/subjects" component={CoeDepartments}/>
-            <Route path="/coe/sessions" component={CoeSessions} />       
-            <Route path="/hod/dashboard" component={HodDashboard} />   
-            <Route path="/hod/subjects" component={HodSubjects} /> 
-            <Route path="/hod/students" component={HodStudents} /> 
-            <Route path="/sub_registrar/editStudentInfo/:id" component={EditStudentInfo}/>
+            <Route exact path="coe/academics/department/:id" component={CoeDepartments} />
+            <Route exact path="/coe/sessions" component={CoeSessions} />       
+            <Route exact path="/hod/dashboard" component={HodDashboard} />   
+            <Route exact path="/hod/subjects" component={HodSubjects} /> 
+            <Route exact path="/hod/subject/:id/" component={HodIndividualSubject} /> 
+            <Route exact path="/hod/students" component={HodStudents} /> 
+            <Route exact path="/hod/subject/:id/track" component={HodSubjectTrack} /> 
+            <Route exact path="/hod/curriculum" component={HodCurriculum} />
+
+            <Route exact path="/faculty/lecture_corner" component={FacultyLectureCorner} />
+            
             <Route component={Error} />
         </Switch>
     </Router>

@@ -36,7 +36,7 @@ const Navbar = (data) => {
                                 {/* <li className="nav-item"><Link to="attendance" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-user text-light fa-sm mr-3"></i>Attendence</small></Link></li>*/}
                                 <li className="nav-item"><Link to="subjects" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-envelope text-light fa-sm mr-3"></i>Subjects</small></Link></li>
                                 <li className="nav-item"><Link to="notification" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-shopping-cart text-light fa-sm mr-3"></i>Notifications</small></Link></li>
-                                {/* {/*<li className="nav-item"><Link to="#" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-chart-line text-light fa-sm mr-3"></i>Semster Marks</small></Link></li> */}
+                                 <li className="nav-item"><Link to="curriculum" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-chart-line text-light fa-sm mr-3"></i>Curriculum</small></Link></li>
                                 <li className="nav-item"><Link to="students" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-chart-bar text-light fa-sm mr-3"></i> Students</small></Link></li>
                                 <li className="nav-item"><Link to="/student/dashboard" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-table text-light fa-sm mr-3"></i>Lecture Corner</small></Link></li> 
 

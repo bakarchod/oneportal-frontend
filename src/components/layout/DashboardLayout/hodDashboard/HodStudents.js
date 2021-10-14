@@ -29,24 +29,6 @@ const HodSubjects = (data) => {
 		  })();
 	  },[])
       
-	//   const get_faculty=()=>{
-		  
-	// 	//   var token=
-	// 	//   console.log("Entered")
-	// 	//   console.log(token)
-    //     console.log({id}.id)
-	// 	  Axios.get("http://oneportal.pythonanywhere.com/datamanager/get_faculty",
-	// 	  	{headers:{
-	// 			  "Authorization" : "Token "+localStorage.getItem('Token')
-	// 			}
-	// 		}).then(response=>{
-	// 			setFaculty_data(response.data)
-	// 			console.log(response.data)
-				
-	// 		}).catch(error=>{
-	// 			console.log(error)
-	// 		})
-	//   }
 	  const get_students=()=>{
 		  
 		//   var token=
@@ -66,12 +48,6 @@ const HodSubjects = (data) => {
 			})
 	  }
 
-	//   const re_fresh=()=>{
-	// 	  setRefresh(!refresh)
-	//   }
-	//   const handle = (e) =>{
-	// 	this.setState({file:e.target.files[0]})
-	//   }
 
     const search = () => {
             $("#search").on("keyup", function() {

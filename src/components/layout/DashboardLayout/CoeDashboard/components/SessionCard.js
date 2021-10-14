@@ -3,7 +3,7 @@ import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
-// import {refresh,setRefresh} from '../FacultyDashboard';
+import { API } from '../../../../../API';
 
 const SessionCard=({sessionData,refresh,setRefresh})=>{
 	const end_sesion=(event)=>{
@@ -11,7 +11,7 @@ const SessionCard=({sessionData,refresh,setRefresh})=>{
 		//   var token=
 		//   console.log("Entered")
 		//   console.log(token)
-		  Axios.get("http://oneportal.pythonanywhere.com/coe/end_session/"+sessionData.id,
+		  Axios.get(`${API}/coe/end_session/${sessionData.id}`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}

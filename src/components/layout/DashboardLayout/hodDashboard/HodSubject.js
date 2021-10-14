@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import '../dashboard.css';
-import { Link } from 'react-router-dom';
+import { API } from '../../../../API';
 import Axios from 'axios';
 import $ from 'jquery'
 // import Department_card from './components/Department_card';
@@ -37,7 +37,7 @@ const HodSubjects = (data) => {
 		//   console.log("Entered")
 		//   console.log(token)
         console.log({id}.id)
-		  Axios.get("http://oneportal.pythonanywhere.com/datamanager/get_faculty",
+		  Axios.get(`${API}/datamanager/get_faculty`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}
@@ -55,7 +55,7 @@ const HodSubjects = (data) => {
 		//   console.log("Entered")
 		//   console.log(token)
         console.log({id}.id)
-		  Axios.get("http://oneportal.pythonanywhere.com/acads/get_subjects",
+		  Axios.get(`${API}/acads/get_subjects`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}
@@ -80,7 +80,7 @@ const HodSubjects = (data) => {
 		event.preventDefault();
 		console.log(formData.entries())
 
-		Axios.post("http://oneportal.pythonanywhere.com/acads/add_new_subject", formData,
+		Axios.post(`${API}/acads/add_new_subject`, formData,
 			
 			{
 				headers:{

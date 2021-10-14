@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { toast,ToastContainer } from "react-toastify";
 import './style.css';
 import Axios from "axios";
+import { API } from "../../../../API";
 
 
 const EditStudentInfo=(props)=>{
@@ -17,7 +18,7 @@ const EditStudentInfo=(props)=>{
     const [refresh,setRefresh]=useState(true); 
 
     useEffect(async ()=>{
-        let result=await fetch("http://oneportal.pythonanywhere.com/sub_registrar/sub_get_single_student/"+props.match.params.id,
+        let result=await fetch(`${API}/sub_registrar/sub_get_single_student/${props.match.params.id}`,
         {
             method:'GET',
             headers:{"Authorization" : "Token "+localStorage.getItem('Token')}
@@ -35,7 +36,7 @@ const EditStudentInfo=(props)=>{
 		//   var token=
 		//   console.log("Entered")
 		//   console.log(token)
-		  Axios.get("http://oneportal.pythonanywhere.com/acads/coe_get_departments",
+		  Axios.get(`${API}/acads/coe_get_departments`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}
@@ -52,7 +53,7 @@ const EditStudentInfo=(props)=>{
 		//   var token=
 		//   console.log("Entered")
 		//   console.log(token)
-		  Axios.get("http://oneportal.pythonanywhere.com/acads/get_programs",
+		  Axios.get(`${API}/acads/get_programs`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}
@@ -75,7 +76,7 @@ const EditStudentInfo=(props)=>{
 			obj[key] = value;
 		}
 		console.log(obj);
-        Axios.post("http://oneportal.pythonanywhere.com/sub_registrar/sub_edit_details/"+props.match.params.id,
+        Axios.post(`${API}/sub_registrar/sub_edit_details/${props.match.params.id}`,
 			(obj),
 			{headers:{"Authorization" : "Token "+localStorage.getItem('Token')}}).then(response=>{
             console.log(response)

@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import '../dashboard.css';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import Department_card from './components/Department_card';
+import { API } from '../../../../API';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/NavbarCoeAcademics';
@@ -34,7 +34,7 @@ const CoeSessions = (data) => {
 		//   var token=
 		//   console.log("Entered")
 		//   console.log(token)
-		  Axios.get("http://oneportal.pythonanywhere.com/coe/get_sessions",
+		  Axios.get(`${API}/coe/get_sessions`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}
@@ -60,7 +60,7 @@ const CoeSessions = (data) => {
 			obj[key] = value;
 		}
 		console.log(obj);
-		Axios.post("http://oneportal.pythonanywhere.com/coe/create_session",
+		Axios.post(`${API}/coe/create_session`,
 			(obj),
 			{headers:{"Authorization" : "Token "+localStorage.getItem('Token')}}).then(response=>{
             console.log(response);

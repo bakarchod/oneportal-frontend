@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import '../dashboard.css';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import Department_card from './components/Department_card';
+import { API } from '../../../../API';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/NavbarCoeAcademics';
@@ -33,7 +33,7 @@ const CoeDepartments = (data) => {
 		//   console.log("Entered")
 		//   console.log(token)
         console.log({id}.id)
-		  Axios.get("http://oneportal.pythonanywhere.com/coe/departments/"+{id}.id+"/students",
+		  Axios.get(`${API}/coe/departments/"${id}/students`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}
@@ -51,7 +51,8 @@ const CoeDepartments = (data) => {
 		//   console.log("Entered")
 		//   console.log(token)
         console.log({id}.id)
-		  Axios.get("http://oneportal.pythonanywhere.com/coe/departments/"+{id}.id+"/subjects",
+
+		  Axios.get(`${API}/coe/departments/${id}/subjects`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}
@@ -88,7 +89,7 @@ const CoeDepartments = (data) => {
 								
 								{
 									subject_data.map((subject,index)=>(
-										<SubjectCards subjectData={subject} key={index} refresh={refresh} setRefresh={setRefresh}/>
+										<SubjectCards departmentData={subject} key={index} refresh={refresh} setRefresh={setRefresh}/>
 									))
 								}
 								</div>	

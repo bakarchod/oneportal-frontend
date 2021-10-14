@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import '../dashboard.css';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import Student_card from '../Admission Dashboard/components/Student_card';
+import { API } from '../../../../API';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar';
@@ -30,7 +30,7 @@ const CoeDashboard = (data) => {
 		//   var token=
 		//   console.log("Entered")
 		//   console.log(token)
-		  Axios.get("http://oneportal.pythonanywhere.com/hod/get_notification",
+		  Axios.get(`${API}/hod/get_notification`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}

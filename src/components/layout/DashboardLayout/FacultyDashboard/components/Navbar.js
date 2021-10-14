@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../dashboard.css';
+import '../../dashboard.css';
 import { Link } from 'react-router-dom';
 const FacultyDashboard = (data) => {
     return (
@@ -26,8 +26,8 @@ const FacultyDashboard = (data) => {
                             </div>
                             <ul className="navbar-nav flex-column mt-4">
                                 <li className="nav-item"><Link to="#" className="nav-link text-white p-1 mb-2 current"><small><i className="fas fa-home text-light fa-sm mr-3"></i>Dashboard</small></Link></li>
-                                {/* <li className="nav-item"><Link to="attendance" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-user text-light fa-sm mr-3"></i>Attendence</small></Link></li>
-                                <li className="nav-item"><Link to="/outpass" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-envelope text-light fa-sm mr-3"></i>Outing</small></Link></li>
+                                <li className="nav-item"><Link to="lecture_corner" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-user text-light fa-sm mr-3"></i>Lecture Corner</small></Link></li>
+                                {/* <li className="nav-item"><Link to="/outpass" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-envelope text-light fa-sm mr-3"></i>Outing</small></Link></li>
                                 <li className="nav-item"><Link to="/notice" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-shopping-cart text-light fa-sm mr-3"></i>Notice Board</small></Link></li>
                                 <li className="nav-item"><Link to="#" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-chart-line text-light fa-sm mr-3"></i>Semster Marks</small></Link></li>
                                 <li className="nav-item"><Link to="/calendar" className="nav-link text-white p-1 mb-2 sidebar-link"><small><i className="fas fa-chart-bar text-light fa-sm mr-3"></i> Calender</small></Link></li>

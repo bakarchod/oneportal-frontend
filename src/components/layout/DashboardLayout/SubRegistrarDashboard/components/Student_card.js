@@ -3,7 +3,7 @@ import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
-// import {refresh,setRefresh} from '../FacultyDashboard';
+import { API } from '../../../../../API';
 
 const Student_card=({studentData,refresh,setRefresh})=>{
 
@@ -12,7 +12,7 @@ const Student_card=({studentData,refresh,setRefresh})=>{
 		console.log(studentData.id)
 		// console.log(value)
 		
-        Axios.get("http://oneportal.pythonanywhere.com/sub_registrar/sub_delete_student/"+studentData.id,
+        Axios.get(`${API}/sub_registrar/sub_delete_student/${studentData.id}`,
 		{
 			headers:{"Authorization" : "Token "+localStorage.getItem('Token')
 		  }
@@ -33,7 +33,7 @@ const Student_card=({studentData,refresh,setRefresh})=>{
     const conf_std=(event)=>{
         event.preventDefault();
 		console.log(studentData.id)
-		Axios.get("http://oneportal.pythonanywhere.com/sub_registrar/confirm_temp_student/"+studentData.id,
+		Axios.get(`${API}/sub_registrar/confirm_temp_student/${studentData.id}`,
 		{
 			headers:{"Authorization" : "Token "+localStorage.getItem('Token')
 		  }

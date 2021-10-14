@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import '../dashboard.css';
-import { Link } from 'react-router-dom';
+import { API } from '../../../../API';
 import Axios from 'axios';
 import Student_card from './components/Student_card';
 import { ToastContainer } from 'react-toastify';
@@ -20,7 +20,7 @@ const ConfirmAdmission = (data) => {
 	// 		obj[key] = value;
 	// 	}
 	// 	console.log(obj);
-	// 	Axios.post("http://oneportal.pythonanywhere.com/admissions/add_single_student",
+	// 	Axios.post(`${API}/admissions/add_single_student",
 	// 		(obj),
 	// 		{headers:{"Authorization" : "Token "+localStorage.getItem('Token')}}).then(response=>{
     //         console.log(response)
@@ -46,7 +46,7 @@ const ConfirmAdmission = (data) => {
 		//   var token=
 		//   console.log("Entered")
 		//   console.log(token)
-		  Axios.get("http://oneportal.pythonanywhere.com/sub_registrar/sub_get_student",
+		  Axios.get(`${API}/sub_registrar/sub_get_student`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}

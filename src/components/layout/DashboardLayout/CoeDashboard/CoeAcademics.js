@@ -6,7 +6,7 @@ import Department_card from './components/Department_card';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/NavbarCoeAcademics';
-import CoeDashboard from './CoeDashboard';
+import { API } from '../../../../API';
 
 const CoeAcademics = (data) => {
 	const [department_data,setDepartment_data]=useState([]);
@@ -28,12 +28,13 @@ const CoeAcademics = (data) => {
 		//   var token=
 		//   console.log("Entered")
 		//   console.log(token)
-		  Axios.get("http://oneportal.pythonanywhere.com/coe/coe_get_departments",
+		  Axios.get(`${API}/coe/coe_get_departments`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}
 			}).then(response=>{
-				setDepartment_data(response.data)
+				console.log(response.data)
+				setDepartment_data(response.data);
 				console.log(department_data)
 			}).catch(error=>{
 				console.log(error)

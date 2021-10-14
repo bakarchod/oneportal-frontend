@@ -1,7 +1,7 @@
 // import {API} from '../API';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
-const API = "http://oneportal.pythonanywhere.com/api/"
+import {API} from '../API';
 
 // const signUp = user => {
 //     return fetch(`${API}accounts/login`,{
@@ -26,13 +26,13 @@ const signIn = user => {
         "username":user['email'],
         "password":user['password']
     }
-    console.log(data);  
+    console.log(data,API);  
     // console.log(formData.keys());  
     // return Axios.post('http://localhost:8000/api/gettoken/',data)
-    return fetch('http://oneportal.pythonanywhere.com/auth/gettoken/',{
+    return fetch(`${API}/auth/gettoken/`,{
         method:"POST",
         headers: {"Content-Type": "application/json"},
-        url : 'http://oneportal.pythonanywhere.com/auth/gettoken/',
+        // url : 'http://oneportal.pythonanywhere.com/auth/gettoken/',
         body: JSON.stringify(data),
     })
     .then((response) => {

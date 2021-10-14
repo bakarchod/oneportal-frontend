@@ -6,7 +6,7 @@ import Student_card from './components/Student_card';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './Navbar';
-
+import { API } from '../../../../API';
 
 const RegisterStudent = (data) => {
 	const [stu_data,setStu_data]=useState([]);
@@ -23,7 +23,7 @@ const RegisterStudent = (data) => {
 			obj[key] = value;
 		}
 		console.log(obj);
-		Axios.post("http://oneportal.pythonanywhere.com/admissions/add_single_student",
+		Axios.post(`${API}/admissions/add_single_student`,
 			(obj),
 			{headers:{"Authorization" : "Token "+localStorage.getItem('Token')}}).then(response=>{
             console.log(response)
@@ -51,7 +51,7 @@ const RegisterStudent = (data) => {
 		//   var token=
 		//   console.log("Entered")
 		//   console.log(token)
-		  Axios.get("http://oneportal.pythonanywhere.com/admissions/get_students",
+		  Axios.get(`${API}/admissions/get_students`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}
@@ -67,7 +67,7 @@ const RegisterStudent = (data) => {
 		//   var token=
 		//   console.log("Entered")
 		//   console.log(token)
-		  Axios.get("http://oneportal.pythonanywhere.com/acads/coe_get_departments",
+		  Axios.get(`${API}/acads/coe_get_departments`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}
@@ -84,7 +84,7 @@ const RegisterStudent = (data) => {
 		//   var token=
 		//   console.log("Entered")
 		//   console.log(token)
-		  Axios.get("http://oneportal.pythonanywhere.com/acads/get_programs",
+		  Axios.get(`${API}acads/get_programs`,
 		  	{headers:{
 				  "Authorization" : "Token "+localStorage.getItem('Token')
 				}

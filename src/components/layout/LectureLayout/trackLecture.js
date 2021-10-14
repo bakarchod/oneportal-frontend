@@ -160,7 +160,7 @@ export default function trackLecture() {
                             </div>
                         </div>
                     </div>
-                    <!-- </div> -->
+                    <!-- </div> --></div>
                 </div>
             </div>
         </div>
